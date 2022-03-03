@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- -------------Bootstrap CSS----------- -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <title> Dashboard - SQ</title>
+</head>
+
+<body class="bg-Logs">
+    <nav class="navbar navbar-light ">
+        <div class="container mx-1 ">
+            <a class="navbar-brand" style="font-size: 30px;" href="/">
+                <img src="static\SQ logo.png" alt="" width="90" height="100" class="d-inline-block align-text-middle">
+                <b> Quantified-Self </b>
+            </a>
+            <a class="btn btn-outline-dark mx-1" href="/">Logout</a>
+        </div>
+
+    </nav>
+
+    <form method="post" action="/add_tracker">
+        <h1 class="display-4 mx-5 "
+            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 70px;position: relative; top: -25px;">
+            Add Log</h1><br>
+
+        <div class="container mb-3 mx-5 row">
+            <label for="trackerdesc" class="col-sm-2 form-label" style="font-size: 20px;"><b>When</b></label>
+            <div class="col-sm-5">
+                <input class="form-control" name="tdate" type="datetime-local" placeholder=""
+                    aria-label="Disabled input example">
+
+
+            </div>
+        </div>
+        </div><br>
+
+        <div class=" container mb-3 mx-5 row">
+            <label for="trackername" class="col-sm-2 col-form-label" style="font-size: 20px;"><b>Value to be recorded</b></label>
+            <div class="col-sm-5">
+
+                <input class="form-control" name="Ttime" type="number" placeholder=""
+                    aria-label="Disabled input example">
+
+
+            </div>
+        </div><br>
+        <div class="container mb-3 mx-5 row">
+            <label for="trackerdesc" class="col-sm-2 form-label" style="font-size: 20px;"><b>Add some
+                    comments</b></label>
+            <div class="col-sm-5">
+                <textarea name="comments" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <div style="text-align: center; position: relative; bottom:-30px;" class="d-grid gap-2 col-6 mx-auto">
+        <a href="/add_tracker" type="submit" class="btn btn-dark btn-block btn-lg " value="Logit"><span
+                style="font-size:100%;color:white;">&starf;</span> <b> Log It </b></a>
+    </div>
+    <!-- 
+    <div style="text-align: center; position: relative; bottom:-120px;" class="d-grid gap-2 col-6 mx-auto">
+        <a type="button" class="btn btn-dark btn-block mx-3 m" href="home.html"> <span
+                style="font-size:150%;color:white;">&starf;</span> <b> Log It </b> </a> -->
+    <!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Separate Popper and Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
