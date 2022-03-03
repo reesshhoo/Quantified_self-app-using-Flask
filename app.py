@@ -61,25 +61,27 @@ def logout():
 @app.route('/', methods=['GET', 'POST'])
 def login_validation():
     global current_user
-    if request.method=='GET':
-        return render_template('welcome.html')
-    else:
-        
-        usr = request.form.get('username')
-        pasw = request.form.get('password')
-        check1 = User.query.filter_by(username=usr).first()
-        check2 = User.query.filter_by(password=pasw).first()
-        
-        if (usr=='') or (pasw==''):
-            return render_template('welcome.html', error=1)
+    try:
+        if request.method=='GET':
+            return render_template('welcome.html')
         else:
-            if check1.user_id==check2.user_id:
-                current_user = check1.username
-                login_user(check1, remember=True)
-                return redirect('/dashboard')
-            else:
+            
+            usr = request.form.get('username')
+            pasw = request.form.get('password')
+            check1 = User.query.filter_by(username=usr).first()
+            check2 = User.query.filter_by(password=pasw).first()
+            
+            if (usr=='') or (pasw==''):
                 return render_template('welcome.html', error=1)
-    
+            else:
+                if check1.user_id==check2.user_id:
+                    current_user = check1.username
+                    login_user(check1, remember=True)
+                    return redirect('/dashboard')
+                else:
+                    return render_template('welcome.html', error=1)
+    except:
+        return render_template('welcome.html', error=1)
 
 
 @app.route('/register', methods=['GET', 'POST'])
