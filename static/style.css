@@ -6,29 +6,34 @@
     background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
 }
 
 
 
 .bg-home {
-    background: #C6FFDD;
+    background: #ee9ca7;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 
 
 }
 
 .bg-Logs {
-    background: #E8CBC0;
+    background: #ef32d9;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
+    background: -webkit-linear-gradient(to right, #89fffd, #ef32d9);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #636FA4, #E8CBC0);
+    background: linear-gradient(to right, #89fffd, #ef32d9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 
 
 
@@ -40,5 +45,5 @@
 
 
 h1 {
-    text-shadow:  0 1px white, 1px 0 white, 0 0px white;
+    text-shadow: 0 1px white, 1px 0 white, 0 0px white;
 }
