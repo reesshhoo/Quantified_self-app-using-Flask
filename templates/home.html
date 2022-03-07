@@ -50,9 +50,9 @@
         <thead>
             <tr style="font-size: 20px;">
                 <th scope="col">Tracker</th>
-                <th scope="col">Last Tracked</th>
+                
                 <th scope="col"></th>
-                <th scope="col" style="position: relative; left:40px;">Actions</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
 
@@ -61,12 +61,11 @@
             {% for i in trackers %}
             <tr style="font-size: 20px;">
                 <td scope="col">{{i.tracker_name}}</td>
-                <td scope="col">{{lasttracked}}</td>
                 <td scope="col"><a href="/logs/{{i.tracker_id}}" type="button"
-                        class="btn btn-outline-dark mx-1">&#128065;</a></td>
-                <td scope="col"><a href='/update_tracker/{{i.tracker_id}}' type="button" class="btn btn-outline-dark mx-1" > Edit </a>
+                        class="btn btn-dark mx-1">&#128065; View</a></td>
+                <td scope="col"><a href='/update_tracker/{{i.tracker_id}}' type="button" class="btn btn-dark mx-1" > Edit </a>
                     <!-- <a href="#" type="button" class="btn btn-outline-dark mx-1" >Delete</button> -->
-                    <a href="/delete_tracker/{{i.tracker_id}}" type="button" class="btn btn-outline-dark mx-1">Delete
+                    <a href="/delete_tracker/{{i.tracker_id}}" type="button" class="btn btn-dark mx-1">Delete
                     </a>
                 </td>
             </tr>

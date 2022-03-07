@@ -123,7 +123,7 @@ def register():
 def dashboard(uid):
     if request.method=='GET':
         trackers=User.query.filter_by(user_id=uid).first()
-        return render_template('home.html', c=trackers, trackers=trackers.trackers, lasttracked=datetime.now())
+        return render_template('home.html', c=trackers, trackers=trackers.trackers)
 
 
 
