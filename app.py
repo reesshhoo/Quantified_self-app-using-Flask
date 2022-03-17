@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+import matplotlib.pyplot as plt
 
 
 # ---------------------------------------------------------------- APP INTIALIZATION ----------------------------------------------------------------------------------- #
@@ -147,6 +148,33 @@ def addtracker(uid):
 
     return redirect(f'/dashboard/{uid}')
         
+# ---------------------------------------------------------------- GRAPH GENERATOR ----------------------------------------------------------------------------------- #
+
+def num_graph(t_id,logs):
+  x_list=[]
+  y_list=[]
+
+  for i in logs:
+    x_list.append(i.timestamp)
+    y_list.append(int(i.log_value))
+ 
+    
+  print(x_list)
+  print(y_list)
+  plt.xlabel("Timestamp")
+  plt.ylabel("Values")
+  plt.title("Trend Chart")
+  plt.xticks(rotation=20)
+  plt.tight_layout()
+  plt.plot(x_list,y_list,color='red')
+  filename = "static/imagesUI/numerical_graph_"+str(t_id)+".png"
+  plt.savefig(filename)
+  plt.close()
+
+  return filename
+
+
+
 # ---------------------------------------------------------------- LOG REGISTER ----------------------------------------------------------------------------------- #
 
 @app.route("/logs/<int:tid>", methods=["GET", "POST"])
@@ -155,22 +183,28 @@ def logs(tid):
     trackers=User.query.filter_by(user_id=track.user_id).first()
     if request.method == "GET":
         loggers=Log.query.filter_by(tracker_id=tid).all()
+        if track.tracker_type == "Numerical":
+            num_graph(tid, loggers)
         return render_template("logs.html", track=track,c=trackers, d=trackers.trackers, loggers=loggers)
     else:
         ttime = request.form.get("ttime")
         tcomm = request.form.get("tcomm")
-        print('\n', track.tracker_type, "\n")
+
         if track.tracker_type == "Multi-choice":
             ttype = request.form["ltype"]
             log = Log(log_value=ttype, comments=tcomm, tracker_id=tid, timestamp=ttime)
-
+            db.session.add(log)
+            db.session.commit()
+            loggers=Log.query.filter_by(tracker_id=tid).all()
         else:
 
             tval = request.form.get("tval")
             log = Log(log_value=tval, comments=tcomm, tracker_id=tid, timestamp=ttime)
-        db.session.add(log)
-        db.session.commit()
-    loggers=Log.query.filter_by(tracker_id=tid).all()
+            db.session.add(log)
+            db.session.commit()
+            loggers=Log.query.filter_by(tracker_id=tid).all()
+            num_graph(tid, loggers)
+    
 
     return render_template("logs.html", track=track,c=trackers, loggers=loggers)
 
@@ -215,8 +249,8 @@ def update_log(tid):
         newtime = request.form.get('newtime')
         newcomm = request.form.get('newcomm')
 
-        logfil.tracker_name = newtime
-        logfil.description = newcomm
+        # logfil.tracker_name = newtime
+        # logfil.description = newcomm
         logfil.timestamp = newtime
         logfil.comments = newcomm
         if trackfil.tracker_type=='Numerical':
@@ -237,12 +271,14 @@ def update_log(tid):
 @app.route('/delete_log/<int:lid>')
 def delete_log(lid):
     logfil = Log.query.filter_by(logger_id=lid).first()
+    
     # logger=User.query.filter_by(user_id=trackfil.user_id).first()
     # logfil = Log.query.filter_by(tracker_id=tid).all()
     Log.query.filter_by(logger_id=lid).delete()
     # Log.query.filter_by(tracker_id=tid).delete()
     # db.session.delete(logfil)
     db.session.commit()
+    
     return redirect(f'/logs/{logfil.tracker_id}')
 
 
