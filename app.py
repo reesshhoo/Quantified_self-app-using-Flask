@@ -165,7 +165,7 @@ def num_graph(t_id,logs):
   plt.ylabel("Values")
   plt.title("Trend Chart")
   plt.xticks(rotation=20)
-  plt.tight_layout()
+  plt.tight_layout(pad=4)
   plt.plot(x_list,y_list,color='red')
   filename = "static/imagesUI/numerical_graph_"+str(t_id)+".png"
   plt.savefig(filename)
@@ -292,6 +292,6 @@ def delete_log(lid):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
 
