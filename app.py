@@ -239,28 +239,29 @@ def delete_tracker(tid):
 
 # ---------------------------------------------------------------- UPDATE LOG ----------------------------------------------------------------------------------- #
 
-@app.route('/update_log/<int:tid>', methods=['GET','POST'])
-def update_log(tid):
-    logfil = Log.query.filter_by(tracker_id=tid).first()
+@app.route('/update_log/<int:tid>/<int:lid>', methods=['GET','POST'])
+def update_log(tid,lid):
+    logfil = Log.query.filter_by(tracker_id=tid).all()
+    logfilt = Log.query.filter_by(logger_id=lid).first()
     trackfil = Tracker.query.filter_by(tracker_id=tid).first()
     if request.method=='GET':
-        return render_template('update_log.html', logfil=logfil, trackfil=trackfil)
+        return render_template('update_log.html', logfil=logfil, trackfil=trackfil, logfilt=logfilt)
     else:
         newtime = request.form.get('newtime')
         newcomm = request.form.get('newcomm')
 
         # logfil.tracker_name = newtime
         # logfil.description = newcomm
-        logfil.timestamp = newtime
-        logfil.comments = newcomm
+        logfilt.timestamp = newtime
+        logfilt.comments = newcomm
         if trackfil.tracker_type=='Numerical':
             newval = request.form.get('newval')
-            logfil.log_value = newval
+            logfilt.log_value = newval
         else:
             newchoice = request.form.get('newchoice')
-            logfil.log_value = newchoice
+            logfilt.log_value = newchoice
         
-        db.session.add(logfil)
+        db.session.add(logfilt)
         db.session.commit()
         return redirect(f'/logs/{tid}')
 

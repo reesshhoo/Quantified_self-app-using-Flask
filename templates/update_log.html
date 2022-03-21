@@ -28,7 +28,7 @@
 
     </nav>
     <!------------------------------------------------ UPDATE FORM ------------------------------------------------------------->
-    <form method="post" action="/update_log/{{trackfil.tracker_id}}">
+    <form method="post" action="/update_log/{{trackfil.tracker_id}}/{{logfilt.logger_id}}">
         <h1 class="display-4 mx-5 "
             style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 70px;position: relative; top: -10px;">
             Edit Log</h1><br>
@@ -36,16 +36,16 @@
         <div class="container mb-3 mx-5 row">
             <label for="trackerdesc" class="col-sm-2 form-label" style="font-size: 20px;"><b>When</b></label>
             <div class="col-sm-5">
-                <input class="form-control" name="newtime" type="datetime-local" value="{{logfil.timestamp}}"
+                <input class="form-control" name="newtime" type="datetime-local" value="{{logfilt.timestamp}}"
                     aria-label="Disabled input example">
             </div>
         </div><br>
-        {% if trackfil.tracker_type=='Numerical' %}
-            
+      {% if trackfil.tracker_type=='Numerical' %}
+           
         <div class="container mb-3 mx-5 row">
             <label for="trackerdesc" class="col-sm-2 form-label" style="font-size: 20px;"><b>Value</b></label>
             <div class="col-sm-5">
-                <input class="form-control" name="newval" type="text" value="{{logfil.log_value}}"
+                <input class="form-control" name="newval" type="text" value="{{logfilt.log_value}}"
                 aria-label="Disabled input example">
             </div>
         </div><br>
@@ -70,7 +70,7 @@
             <label for="trackername" class="col-sm-2 col-form-label" style="font-size: 20px;"><b>Comments</b></label>
             <div class="col-sm-5">
 
-                <input class="form-control" name="newcomm" type="text" value="{{logfil.comments}}"
+                <input class="form-control" name="newcomm" type="text" value="{{logfilt.comments}}"
                     aria-label="Disabled input example">
 
 
